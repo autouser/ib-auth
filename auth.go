@@ -32,6 +32,12 @@ func main() {
 	}
 
 	addr := os.Getenv("AUTH_ADDR")
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("AUTH"))
+	})
+
 	http.HandleFunc("/auth", func(w http.ResponseWriter, r *http.Request) {
 		username := r.URL.Query().Get("username")
 		password := r.URL.Query().Get("password")
